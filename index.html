@@ -46,7 +46,7 @@ header {
   overflow: hidden;
   padding: 12px 0;
   border-bottom: 2px solid #a5daf7;
-  min-height: 95px;
+  min-height: 80px;
   display: flex;
   align-items: center;
 }
@@ -93,7 +93,7 @@ header::before { display: none !important; }
 
 /* Xử lý Logo phẳng đổ bóng, viền trắng ôm sát giống hình mẫu */
 .header-logo-flat {
-  height: 100px;
+  height: 64px;
   max-width: 100%;
   object-fit: contain;
   filter: drop-shadow(0px 3px 5px rgba(13, 32, 69, 0.25));
@@ -124,12 +124,12 @@ header::before { display: none !important; }
 
 .ht p {
   font-family: 'Montserrat', sans-serif;
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #164095;
-  text-transform: uppercase; /* Viết hoa toàn bộ dòng phụ */
-  margin-top: 4px;
-  letter-spacing: 0.3px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--red-dark);
+  text-transform: none; /* Câu giới thiệu viết thường bình thường */
+  margin-top: 6px;
+  letter-spacing: 0;
   opacity: 1;
 }
 
@@ -202,23 +202,12 @@ nav{background:var(--navy);box-shadow:0 2px 12px rgba(13,32,69,.35);position:sti
 .nw a{text-decoration:none;color:rgba(255,255,255,.8);font-size:12.5px;font-weight:700;padding:12px 13px;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all .18s;white-space:nowrap;letter-spacing:.2px;}
 .nw a:hover,.nw a.active{color:#fff;border-bottom-color:var(--red);}
 
-/* ── HERO ── */
-.hero{background:linear-gradient(135deg,var(--red-dark) 0%,var(--red) 50%,#e02040 100%);color:#fff;padding:50px 20px;text-align:center;position:relative;overflow:hidden;}
-.hero::before{content:'★';position:absolute;font-size:180px;color:rgba(255,255,255,.04);top:-20px;left:50%;transform:translateX(-50%);pointer-events:none;}
-.hero h2{font-size:25px;font-weight:800;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,.2);position:relative;}
-.hero p{font-size:20px;opacity:.92;max-width:540px;margin:0 auto 22px;position:relative;font-weight:500;}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;}
-.btn-w{background:#fff;color:var(--red-dark);border:none;padding:10px 22px;border-radius:7px;font-weight:700;font-size:12.5px;cursor:pointer;text-decoration:none;display:inline-block;transition:.18s;font-family:inherit;letter-spacing:.2px;}
-.btn-w:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.2);}
-.btn-o{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6);padding:10px 22px;border-radius:7px;font-weight:700;font-size:12.5px;text-decoration:none;display:inline-block;transition:.18s;letter-spacing:.2px;}
-.btn-o:hover{background:rgba(255,255,255,.15);border-color:#fff;}
-
 /* ── STATS ── */
-.stats{background:var(--navy);color:#fff;padding:18px 20px;}
+.stats{background:var(--gold-light);color:#7a4a1e;padding:18px 20px;border-top:1px solid #e6cf9a;border-bottom:1px solid #e6cf9a;}
 .sw{max-width:1120px;margin:0 auto;display:flex;justify-content:space-around;flex-wrap:wrap;gap:14px;}
-.si{text-align:center;}
-.si .n{font-size:24px;font-weight:800;display:block;color:var(--gold);}
-.si .l{font-size:11px;opacity:.75;font-weight:600;letter-spacing:.3px;text-transform:uppercase;}
+.si{background:#fff;border:1px solid #f0e3c2;border-radius:12px;box-shadow:0 2px 8px rgba(122,74,30,.10);padding:12px 18px;text-align:center;flex:1 1 150px;max-width:210px;min-width:0;}
+.si .n{font-size:24px;font-weight:800;display:block;color:var(--red-dark);}
+.si .l{font-size:11px;color:var(--navy);font-weight:700;letter-spacing:.3px;text-transform:uppercase;display:block;margin-bottom:2px;}
 
 /* ── LAYOUT ── */
 .wrap{max-width:1280px;margin:0 auto;padding:26px 20px;display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:24px;}
@@ -234,14 +223,6 @@ nav{background:var(--navy);box-shadow:0 2px 12px rgba(13,32,69,.35);position:sti
 /* ── CARD ── */
 .card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:18px;margin-bottom:16px;}
 
-/* ── SERVICE GRID ── */
-.sg{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:24px;}
-@media(max-width:700px){.sg{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:440px){.sg{grid-template-columns:repeat(2,1fr);}}
-.sc{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:14px 8px;text-align:center;text-decoration:none;color:var(--text);border:2px solid transparent;transition:all .18s;}
-.sc:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:var(--sh2);}
-.sc .ico{font-size:24px;margin-bottom:5px;display:block;}
-.sc span{font-size:11px;font-weight:700;color:var(--navy);display:block;line-height:1.3;}
 
 /* ── NEWS CARD ── */
 .nc{background:#fff;border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;display:flex;margin-bottom:10px;cursor:pointer;transition:.18s;border-left:3px solid transparent;}
@@ -412,6 +393,7 @@ footer a:hover{color:#fff;}
   .hw{gap:16px;}
   .h-left{gap:16px;min-width:0;}
   .ht h1{font-size:20px;}
+  .ht p{font-size:16px;}
   .h-right{gap:16px;flex-shrink:0;}
 }
 
@@ -439,23 +421,18 @@ footer a:hover{color:#fff;}
     padding:0 14px;
   }
   .h-left{flex-direction:row;gap:12px;min-width:0;}
-  .header-logo-flat{height:52px;}
+  .header-logo-flat{height:44px;}
   .ht h1{font-size:14px;line-height:1.3;letter-spacing:0;}
-  .ht p{font-size:10.5px;margin-top:2px;}
+  .ht p{font-size:13px;line-height:1.4;margin-top:3px;}
   .h-right{display:none;}
 
   /* Nav */
   .nw{padding:0 8px;}
   .nw a{font-size:12px;padding:13px 12px;}
 
-  /* Hero */
-  .hero{padding:28px 16px;}
-  .hero h2{font-size:21px;line-height:1.4;}
-  .hero p{font-size:14px;line-height:1.7;}
-  .btn-w,.btn-o{padding:12px 20px;font-size:13px;}
-
   /* Thống kê: lưới 2 cột, ô cuối trải rộng */
   .sw{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+  .si{max-width:none;padding:10px 12px;border-radius:10px;}
   .si:last-child{grid-column:1/-1;}
   .stats{padding:14px 16px;}
   .si .n{font-size:20px;line-height:1.4;}
@@ -465,7 +442,6 @@ footer a:hover{color:#fff;}
   .wrap{padding:14px;gap:16px;}
   .sec h3{font-size:20px;}
   aside .sec h3{font-size:17px !important;}
-  .sc span{font-size:12px;}
 
   /* Vùng chạm ≥ 44px */
   .rbtn{min-height:44px;padding:6px 14px;font-size:12px !important;}
@@ -515,9 +491,7 @@ footer a:hover{color:#fff;}
 
 /* ── CẢM ỨNG: không để hiệu ứng :hover "dính" sau khi chạm ── */
 @media(hover:none){
-  .sc:hover{border-color:transparent;transform:none;box-shadow:var(--sh);}
   .nc:hover{border-left-color:transparent;transform:none;box-shadow:var(--sh);}
-  .btn-w:hover{transform:none;box-shadow:none;}
   .pdf-btn:hover{transform:none;background:var(--red);}
   .mli:hover{border-color:transparent;background:var(--bg);}
   .rbtn:hover{border-color:var(--border);color:var(--muted);}
@@ -541,14 +515,14 @@ footer a:hover{color:#fff;}
 </div>
 
 <!-- HEADER -->
-<header>
+<header id="home">
   <div class="hw">
     <!-- Bên trái: Logo phẳng + Tiêu đề hệ thống -->
     <div class="h-left">
-      <img src="https://drive.google.com/thumbnail?id=1iQ5WCaEHv3nxmpImAf0tKYtI-1s_CFVH&sz=w400" class="header-logo-flat" alt="Logo Phường Cầu Kiệu" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+      <img src="https://drive.google.com/thumbnail?id=1j6WpV09CLs8RorScxVqqbCnAOkMVKa5g&sz=w400" class="header-logo-flat" alt="Logo Phường Cầu Kiệu" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.style.display='none'">
       <div class="ht">
         <h1>TRANG THÔNG TIN ĐIỆN TỬ HĐND PHƯỜNG CẦU KIỆU</h1>
-        <p>THÀNH PHỐ HỒ CHÍ MINH</p>
+        <p>Cơ quan đại diện cho ý chí và nguyện vọng của nhân dân</p>
       </div>
     </div>
 
@@ -575,16 +549,6 @@ footer a:hover{color:#fff;}
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero" id="home">
-  <h2>Hội đồng nhân dân Phường Cầu Kiệu</h2>
-  <p>Cơ quan đại diện cho ý chí và nguyện vọng của nhân dân </p>
-  <div class="hero-btns">
-    <a href="#hoatdong" class="btn-w">📋 Hoạt động HĐND</a>
-    <a href="#vanban" class="btn-o">📄 Văn bản mới nhất</a>
-  </div>
-</div>
-
 <!-- STATS -->
 <div class="stats">
   <div class="sw">
@@ -605,17 +569,6 @@ footer a:hover{color:#fff;}
     <strong>⚙️ Kết nối Google Sheets</strong>
     Tìm dòng <code>const SHEETS_ID = ''</code> → dán ID file Sheets vào → lưu. Dữ liệu tự hiển thị.
     <a href="#" onclick="document.getElementById('setup-banner').style.display='none';return false;" style="color:var(--red);font-weight:700;margin-left:8px;">✕ Ẩn</a>
-  </div>
-
-  <!-- TRUY CẬP NHANH -->
-  <div class="sec"><div class="bar"></div><h3>Truy cập nhanh</h3></div>
-  <div class="sg">
-    <a href="#hoatdong" class="sc"><span class="ico">🏛️</span><span>Hoạt động HĐND</span></a>
-    <a href="#vanban"   class="sc"><span class="ico">📋</span><span>Văn bản – NQ</span></a>
-    <a href="#giamsat"  class="sc"><span class="ico">🔍</span><span>Giám sát</span></a>
-    <a href="#tintuc"   class="sc"><span class="ico">📰</span><span>Tin tức</span></a>
-    <a href="#daibieu"  class="sc"><span class="ico">👥</span><span>Đại biểu</span></a>
-    <a href="#tiepdan"  class="sc"><span class="ico">🗓</span><span>Lịch tiếp công dân</span></a>
   </div>
 
   <!-- HOẠT ĐỘNG HĐND -->
