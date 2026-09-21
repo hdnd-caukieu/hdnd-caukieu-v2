@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d2045">
 <title>HĐND Phường Cầu Kiệu – TP. Hồ Chí Minh</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --red:       #c0152a;
@@ -26,7 +29,7 @@
   --sh2:       0 6px 24px rgba(0,0,0,.13);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;scroll-padding-top:64px;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 body{font-family:'Montserrat',sans-serif;color:var(--text);background:var(--bg);font-size:18px;line-height:2;}
 
 /* ── TOPBAR ── */
@@ -91,6 +94,7 @@ header::before { display: none !important; }
 /* Xử lý Logo phẳng đổ bóng, viền trắng ôm sát giống hình mẫu */
 .header-logo-flat {
   height: 100px;
+  max-width: 100%;
   object-fit: contain;
   filter: drop-shadow(0px 3px 5px rgba(13, 32, 69, 0.25));
   /* Tạo viền trắng mịn giả lập đường viền bao quanh logo */
@@ -217,8 +221,9 @@ nav{background:var(--navy);box-shadow:0 2px 12px rgba(13,32,69,.35);position:sti
 .si .l{font-size:11px;opacity:.75;font-weight:600;letter-spacing:.3px;text-transform:uppercase;}
 
 /* ── LAYOUT ── */
-.wrap{max-width:1280px;margin:0 auto;padding:26px 20px;display:grid;grid-template-columns:1fr 460px;gap:24px;}
-@media(max-width:780px){.wrap{grid-template-columns:1fr ;}}
+.wrap{max-width:1280px;margin:0 auto;padding:26px 20px;display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:24px;}
+.wrap>main,.wrap>aside{min-width:0;}
+@media(max-width:1024px){.wrap{grid-template-columns:minmax(0,1fr);}}
 
 /* ── SEC TITLE ── */
 .sec{display:flex;align-items:center;gap:9px;margin-bottom:14px;}
@@ -251,8 +256,9 @@ nav{background:var(--navy);box-shadow:0 2px 12px rgba(13,32,69,.35);position:sti
 .nb .meta{font-size:14px;color:var(--muted);line-height:1.5;}
 
 /* ── TABS ── */
-.tab-bar{display:flex;border-bottom:2px solid var(--border);padding:0 14px;}
-.tb{background:none;border:none;border-bottom:3px solid transparent;padding:9px 12px 10px;font-family:inherit;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;margin-bottom:-2px;transition:.15s;letter-spacing:.2px;}
+.tab-bar{display:flex;box-shadow:inset 0 -2px 0 var(--border);padding:0 14px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tb{background:none;border:none;border-bottom:3px solid transparent;padding:9px 12px 10px;font-family:inherit;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap;flex-shrink:0;transition:.15s;letter-spacing:.2px;}
 .tb.active{color:var(--red);border-bottom-color:var(--red);}
 .tp{display:none;padding:13px 14px;}
 .tp.active{display:block;}
@@ -296,7 +302,8 @@ nav{background:var(--navy);box-shadow:0 2px 12px rgba(13,32,69,.35);position:sti
 .di{font-size:17px;flex-shrink:0;margin-top:2px;}
 .dinfo strong{font-size:15px;font-weight:700;color:var(--navy);display:block;line-height:1.6;}
 .dinfo small{font-size:15px;color:var(--muted);line-height:1.6;}
-.dinfo a{color:var(--red);text-decoration:none;font-size:18px;font-weight:700;}
+.dinfo{min-width:0;overflow-wrap:anywhere;}
+.dinfo a{color:var(--red);text-decoration:none;font-size:18px;font-weight:700;overflow-wrap:anywhere;}
 .dinfo a:hover{text-decoration:underline;}
 
 /* ── MEMBER SCROLL ── */
@@ -324,7 +331,7 @@ nav{background:var(--navy);box-shadow:0 2px 12px rgba(13,32,69,.35);position:sti
 .sch-dot{width:10px;height:10px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:5px;}
 .sch-dot.gold{background:var(--gold);}
 .sch-dot.gray{background:#ccc;}
-.sch strong{font-size:20px;font-weight:700;color:var(--RED);display:block;}
+.sch strong{font-size:20px;font-weight:700;color:var(--red);display:block;}
 .sch small{font-size:18px;color:var(--muted);}
 
 /* ── LOADING ── */
@@ -395,115 +402,132 @@ footer a:hover{color:#fff;}
   border-radius:6px;
 }
 
-/* ── MOBILE RESPONSIVE ── */
+/* ── TABLET & ĐIỆN THOẠI XOAY NGANG (≤1024px) ── */
+@media(max-width:1024px){
+  /* Nav: 1 dòng, cuộn ngang thay vì xuống 2–3 dòng */
+  .nw{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;justify-content:flex-start;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .nw::-webkit-scrollbar{display:none;}
+  .nw a{flex-shrink:0;margin-bottom:0;}
+  /* Header: tiêu đề nhỏ lại để không chạm khối đồng hồ */
+  .hw{gap:16px;}
+  .h-left{gap:16px;min-width:0;}
+  .ht h1{font-size:20px;}
+  .h-right{gap:16px;flex-shrink:0;}
+}
+
+/* ── ĐIỆN THOẠI (≤768px) ── */
 @media(max-width:768px){
+
+  html{scroll-padding-top:56px;}
 
   body{
     font-size:16px;
     line-height:1.7;
   }
 
-  .wrap{
-    grid-template-columns:1fr !important;
-    padding:14px;
-    gap:16px;
-  }
+  /* Topbar */
+  .topbar{font-size:12px;}
+  .tw{justify-content:center;text-align:center;padding:0 14px;}
 
+  /* Header gọn: logo + tiêu đề trên 1 hàng; đồng hồ đã có ở topbar */
+  header{min-height:0;padding:8px 0;}
   .hw{
-    flex-direction:column;
+    flex-direction:row;
     align-items:center;
-    text-align:center;
-    gap:12px;
-    padding:10px 14px;
-  }
-
-  .h-left{
-    flex-direction:column;
+    text-align:left;
     gap:10px;
+    padding:0 14px;
+  }
+  .h-left{flex-direction:row;gap:12px;min-width:0;}
+  .header-logo-flat{height:52px;}
+  .ht h1{font-size:14px;line-height:1.3;letter-spacing:0;}
+  .ht p{font-size:10.5px;margin-top:2px;}
+  .h-right{display:none;}
+
+  /* Nav */
+  .nw{padding:0 8px;}
+  .nw a{font-size:12px;padding:13px 12px;}
+
+  /* Hero */
+  .hero{padding:28px 16px;}
+  .hero h2{font-size:21px;line-height:1.4;}
+  .hero p{font-size:14px;line-height:1.7;}
+  .btn-w,.btn-o{padding:12px 20px;font-size:13px;}
+
+  /* Thống kê: lưới 2 cột, ô cuối trải rộng */
+  .sw{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+  .si:last-child{grid-column:1/-1;}
+  .stats{padding:14px 16px;}
+  .si .n{font-size:20px;line-height:1.4;}
+  .si .l{font-size:11px;line-height:1.4;}
+
+  /* Bố cục chung */
+  .wrap{padding:14px;gap:16px;}
+  .sec h3{font-size:20px;}
+  aside .sec h3{font-size:17px !important;}
+  .sc span{font-size:12px;}
+
+  /* Vùng chạm ≥ 44px */
+  .rbtn{min-height:44px;padding:6px 14px;font-size:12px !important;}
+  .tab-bar{padding:0 4px;}
+  .tb{min-height:44px;padding:10px 9px;font-size:12px;}
+  #sTop{width:44px;height:44px;bottom:16px;right:16px;}
+
+  /* Bỏ cuộn lồng nhau: để trang cuộn tự nhiên */
+  .doc-scroll,
+  .doc-scroll-3,
+  .doc-scroll-5,
+  .member-scroll{
+    max-height:none;
+    overflow:visible;
+    padding-right:0;
   }
 
-  .header-logo-flat{
-    height:95px;
-  }
+  /* Danh sách văn bản / tin */
+  .tag,.rbadge{font-size:11px;}
+  .dinfo strong{font-size:16px !important;}
+  .dinfo small{font-size:14px;}
+  .dinfo a{font-size:15px;}
+  .nb h4{font-size:16px !important;}
+  .nb{padding:10px 12px;}
+  .nb .meta{font-size:13px;}
+  .nth{width:64px;font-size:22px;}
+  .pdf-btn{margin-top:8px;padding:8px 12px;}
 
-  .ht h1{
-    font-size:18px;
-    line-height:1.4;
-  }
+  /* Đại biểu: ảnh nhỏ hơn, tên được xuống dòng */
+  .mli{padding:10px 12px;gap:10px;}
+  .mli-avatar{width:56px;height:56px;font-size:13px;}
+  .mli-info .ten{font-size:16px;white-space:normal;overflow:visible;text-overflow:clip;}
+  .mli-info .chucvu,
+  .mli-info .ban{font-size:13px;}
 
-  .ht p{
-    font-size:11px;
-  }
+  /* Lịch tiếp công dân & liên hệ */
+  .sch strong{font-size:16px;}
+  .sch small{font-size:14px;}
+  .hotline .lbl{font-size:13px;}
+  .hotline .em{font-size:15px;}
 
-  .h-right{
-    width:100%;
-    justify-content:center;
-  }
-
-  .h-clock-box{
-    align-items:center;
-  }
-
-  .nw{
-    justify-content:center;
-  }
-
-  .nw a{
-    font-size:11px;
-    padding:10px 8px;
-  }
-
-  .hero{
-    padding:30px 16px;
-  }
-
-  .hero h2{
-    font-size:21px;
-    line-height:1.5;
-  }
-
-  .hero p{
-    font-size:14px;
-    line-height:1.7;
-  }
-
-  .sec h3{
-    font-size:20px;
-  }
-
-  .dinfo strong{
-    font-size:16px !important;
-  }
-
-  .nb h4{
-    font-size:16px !important;
-  }
-
-  .pdf-btn{
-    margin-top:8px;
-    display:inline-flex;
-  }
-
-  .sw{
-    gap:10px;
-  }
-
-  .si .n{
-    font-size:20px;
-  }
-
-  .si .l{
-    font-size:10px;
-  }
-
-  .fw{
-    grid-template-columns:1fr;
-  }
-
+  .fw{grid-template-columns:1fr;}
 }
 
 /* ── DIVIDER ── */
 .section-gap{margin-top:22px;}
+
+/* ── CẢM ỨNG: không để hiệu ứng :hover "dính" sau khi chạm ── */
+@media(hover:none){
+  .sc:hover{border-color:transparent;transform:none;box-shadow:var(--sh);}
+  .nc:hover{border-left-color:transparent;transform:none;box-shadow:var(--sh);}
+  .btn-w:hover{transform:none;box-shadow:none;}
+  .pdf-btn:hover{transform:none;background:var(--red);}
+  .mli:hover{border-color:transparent;background:var(--bg);}
+  .rbtn:hover{border-color:var(--border);color:var(--muted);}
+}
+
+/* ── NHÃN LOẠI TIN (trước đây chưa có CSS) ── */
+.loai{font-size:12px;font-weight:700;color:var(--red);line-height:1.5;margin-bottom:2px;}
+
+/* ── NÚT / THẺ TIN BẤM ĐƯỢC ── */
+.nc[data-href]:focus-visible{outline:2px solid var(--red);outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -521,7 +545,7 @@ footer a:hover{color:#fff;}
   <div class="hw">
     <!-- Bên trái: Logo phẳng + Tiêu đề hệ thống -->
     <div class="h-left">
-      <img src="https://drive.google.com/thumbnail?id=1iQ5WCaEHv3nxmpImAf0tKYtI-1s_CFVH&sz=w400" class="header-logo-flat" alt="Logo Phường Cầu Kiệu">
+      <img src="https://drive.google.com/thumbnail?id=1iQ5WCaEHv3nxmpImAf0tKYtI-1s_CFVH&sz=w400" class="header-logo-flat" alt="Logo Phường Cầu Kiệu" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.style.display='none'">
       <div class="ht">
         <h1>TRANG THÔNG TIN ĐIỆN TỬ HĐND PHƯỜNG CẦU KIỆU</h1>
         <p>THÀNH PHỐ HỒ CHÍ MINH</p>
@@ -534,8 +558,8 @@ footer a:hover{color:#fff;}
         <span class="date-line">📅 <span id="date-string">Thứ Ba, 20/05/2026</span></span>
         <span id="clock-large">09:30:45</span>
       </div>
-      
-     
+    </div><!-- /h-right -->
+  </div><!-- /hw -->
 </header>
 
 <!-- NAV -->
@@ -595,7 +619,7 @@ footer a:hover{color:#fff;}
   </div>
 
   <!-- HOẠT ĐỘNG HĐND -->
-  <div class="sec" id="hoatdong"><div class="bar"></div><h3>Hoạt động HĐND</h3><button class="rbtn" onclick="load('hoatdong')">↻ Cập nhật</button></div>
+  <div class="sec" id="hoatdong"><div class="bar"></div><h3>Hoạt động HĐND</h3><button class="rbtn" onclick="load('hoatdong',true)">↻ Cập nhật</button></div>
   <div class="card" style="padding:0;overflow:hidden;">
     <div class="tab-bar">
       <button class="tb active" onclick="tab(this,'kyhop')">📅 Kỳ họp</button>
@@ -606,7 +630,7 @@ footer a:hover{color:#fff;}
   </div>
 
   <!-- VĂN BẢN -->
-  <div class="sec section-gap" id="vanban"><div class="bar"></div><h3>Văn bản – Nghị quyết</h3><button class="rbtn" onclick="load('vanban')">↻ Cập nhật</button></div>
+  <div class="sec section-gap" id="vanban"><div class="bar"></div><h3>Văn bản – Nghị quyết</h3><button class="rbtn" onclick="load('vanban',true)">↻ Cập nhật</button></div>
   <div class="card" style="padding:0;overflow:hidden;">
     <div class="tab-bar">
       <button class="tb active" onclick="tab(this,'nq')">📄 Nghị quyết</button>
@@ -619,11 +643,11 @@ footer a:hover{color:#fff;}
   </div>
 
   <!-- GIÁM SÁT -->
-  <div class="sec section-gap" id="giamsat"><div class="bar"></div><h3>Hoạt động giám sát</h3><button class="rbtn" onclick="load('giamsat')">↻ Cập nhật</button></div>
+  <div class="sec section-gap" id="giamsat"><div class="bar"></div><h3>Hoạt động giám sát</h3><button class="rbtn" onclick="load('giamsat',true)">↻ Cập nhật</button></div>
   <div id="d-giamsat"><div class="loading"><span class="spin"></span>Đang tải…</div></div>
 
   <!-- TIN TỨC -->
-  <div class="sec section-gap" id="tintuc"><div class="bar"></div><h3>Tin tức – Thông báo</h3><button class="rbtn" onclick="load('tintuc')">↻ Cập nhật</button></div>
+  <div class="sec section-gap" id="tintuc"><div class="bar"></div><h3>Tin tức – Thông báo</h3><button class="rbtn" onclick="load('tintuc',true)">↻ Cập nhật</button></div>
   <div id="d-tintuc"><div class="loading"><span class="spin"></span>Đang tải…</div></div>
 
 </main>
@@ -633,14 +657,14 @@ footer a:hover{color:#fff;}
 
   <!-- ĐẠI BIỂU -->
   <div class="scard" id="daibieu">
-    <div class="sec" style="margin-bottom:10px;"><div class="bar"></div><h3 style="font-size:13.5px;">Đại biểu HĐND</h3><button class="rbtn" onclick="load('daibieu')" style="font-size:12px;">↻</button></div>
+    <div class="sec" style="margin-bottom:10px;"><div class="bar"></div><h3 style="font-size:13.5px;">Đại biểu HĐND</h3><button class="rbtn" onclick="load('daibieu',true)" style="font-size:12px;">↻</button></div>
     <p style="font-size:11px;color:var(--muted);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:.3px;">Nhiệm kỳ 2026–2031</p>
     <div id="d-daibieu"><div class="loading"><span class="spin"></span>Đang tải…</div></div>
   </div>
 
   <!-- LỊCH TIẾP CÔNG DÂN -->
   <div class="scard" id="tiepdan">
-    <div class="sec" style="margin-bottom:10px;"><div class="bar"></div><h3 style="font-size:13.5px;">Lịch tiếp công dân</h3><button class="rbtn" onclick="load('tiepdan')" style="font-size:10px;">↻</button></div>
+    <div class="sec" style="margin-bottom:10px;"><div class="bar"></div><h3 style="font-size:13.5px;">Lịch tiếp công dân</h3><button class="rbtn" onclick="load('tiepdan',true)" style="font-size:10px;">↻</button></div>
     <div id="d-tiepdan"><div class="loading"><span class="spin"></span>Đang tải…</div></div>
   </div>
 
@@ -724,25 +748,56 @@ const SHEET = {
   tiepdan: 'LichTiepDan'
 };
 
+// ── TIỆN ÍCH AN TOÀN ──
+// Thoát ký tự HTML: dữ liệu từ Google Sheets luôn hiển thị dạng văn bản thuần
+function esc(v) {
+  return String(v == null ? '' : v).replace(/[&<>"']/g, c => (
+    {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]
+  ));
+}
+// Chỉ chấp nhận liên kết http/https
+function safeUrl(u) {
+  u = String(u == null ? '' : u).trim();
+  return /^https?:\/\//i.test(u) ? u : '';
+}
+
+// ── TẢI DỮ LIỆU ──
+// Cache lưu Promise (tránh gọi trùng lúc khởi động); lỗi không được cache
 const cache = {};
 
-async function fetchSheet(name) {
-  if (!SHEETS_ID) return null;
-  if (cache[name]) return cache[name];
-  try {
-    const url = `https://docs.google.com/spreadsheets/d/${SHEETS_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(name)}`;
+async function fetchSheetRaw(name) {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEETS_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(name)}`;
+  // Mạng di động không ổn định: thử tối đa 2 lần, mỗi lần chờ 10 giây
+  for (let attempt = 0; attempt < 2; attempt++) {
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 8000);
-    const r = await fetch(url, {signal: ctrl.signal});
-    clearTimeout(timer);
-    const t = await r.text();
-    const start = t.indexOf('{');
-    const end = t.lastIndexOf('}') + 1;
-    if (start === -1) return null;
-    const j = JSON.parse(t.substring(start, end));
-    if (j.status === 'error') { console.error('Sheets:', name, j.errors?.[0]?.reason); return null; }
-    cache[name] = j; return j;
-  } catch(e) { console.error('fetchSheet:', name, e.message); return null; }
+    const timer = setTimeout(() => ctrl.abort(), 10000);
+    try {
+      const r = await fetch(url, {signal: ctrl.signal});
+      const t = await r.text();
+      const start = t.indexOf('{');
+      const end = t.lastIndexOf('}') + 1;
+      if (start === -1) return null;
+      const j = JSON.parse(t.substring(start, end));
+      if (j.status === 'error') { console.error('Sheets:', name, j.errors?.[0]?.reason); return null; }
+      return j;
+    } catch(e) {
+      console.error('fetchSheet:', name, e.message);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+  return null;
+}
+
+function fetchSheet(name, force = false) {
+  if (!SHEETS_ID) return Promise.resolve(null);
+  if (!force && cache[name]) return cache[name];
+  const p = fetchSheetRaw(name).then(j => {
+    if (!j && cache[name] === p) delete cache[name];
+    return j;
+  });
+  cache[name] = p;
+  return p;
 }
 
 function rows(json) {
@@ -775,80 +830,92 @@ function docList(data, cfg) {
 
   const scrollClass = cfg.scrollClass || 'doc-scroll';
 
-  return `<div class="${scrollClass}"><ul class="dl">${data.map(r=>`
+  return `<div class="${scrollClass}"><ul class="dl">${data.map(r => {
+    const title = esc(r[cfg.title]) || '—';
+    const note  = r[cfg.note]
+      ? `<div style="font-size:13px;color:var(--muted);font-style:italic;font-weight:500;margin-top:4px;">| ${esc(r[cfg.note])}</div>`
+      : '';
+    const date  = r[cfg.date] ? '📅 ' + esc(r[cfg.date]) + ' &nbsp;' : '';
+    const tag   = r[cfg.tag]  ? `<span class="tag tag-navy">${esc(r[cfg.tag])}</span>` : '';
+
+    let pdf = '';
+    if (cfg.showPdf) {
+      const url = safeUrl(r[cfg.link]);
+      pdf = url
+        ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" class="pdf-btn">📥 Tải PDF</a>`
+        : `<a href="javascript:void(0)" onclick="alert('Xin lỗi, chưa có file đính kèm')" class="pdf-btn">📥 Tải PDF</a>`;
+    }
+
+    return `
     <li>
-      <div class="di">${r.Icon||cfg.icon||'📄'}</div>
+      <div class="di">${esc(r.Icon || cfg.icon || '📄')}</div>
       <div class="dinfo">
         <strong>
-          ${r[cfg.title]||'—'}
-          ${r[cfg.note] ? `<div style="font-size:13px;color:var(--muted);font-style:italic;font-weight:500;margin-top:4px;">| ${r[cfg.note]}</div>` : ''}
+          ${title}
+          ${note}
         </strong>
 
         <small>
-          ${r[cfg.date]?'📅 '+r[cfg.date]+' &nbsp;':''}
-          ${r[cfg.tag]?`<span class="tag tag-navy">${r[cfg.tag]}</span>`:''}
-
-          ${cfg.showPdf ? (
-            r[cfg.link]
-            ? `<a href="${r[cfg.link]}" target="_blank" class="pdf-btn">📥 Tải PDF</a>`
-            : `<a href="javascript:void(0)" onclick="alert('Xin lỗi, chưa có file đính kèm')" class="pdf-btn">📥 Tải PDF</a>`
-          ) : ''}
+          ${date}
+          ${tag}
+          ${pdf}
         </small>
       </div>
-    </li>`).join('')}</ul></div>`;
+    </li>`;
+  }).join('')}</ul></div>`;
 }
 
 function newsCards(data) {
   if (!data.length) return '<div class="empty">Chưa có dữ liệu.</div>';
-  return data.map(r=>`
-    <div class="nc" ${r.Link?`onclick="window.open('${r.Link}','_blank')"`:''}>
-      <div class="nth">${r.Icon||'📰'}</div>
+  return data.map(r => {
+    const url = safeUrl(r.Link);
+    return `
+    <div class="nc" ${url ? `data-href="${esc(url)}" role="link" tabindex="0"` : ''}>
+      <div class="nth">${esc(r.Icon || '📰')}</div>
       <div class="nb">
 
-        <h4>${r.TieuDe||'—'}</h4>
+        <h4>${esc(r.TieuDe) || '—'}</h4>
 
          <div class="loai">
-          ${r.Loai||'Tin tức'}
+          ${esc(r.Loai || 'Tin tức')}
         </div>
 
-        <div class="meta">📅 ${r.Ngay||'—'} &nbsp;|&nbsp; ${r.TacGia||''}</div>
+        <div class="meta">📅 ${esc(r.Ngay) || '—'} &nbsp;|&nbsp; ${esc(r.TacGia)}</div>
 
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
+
 function members(data) {
   if (!data.length) return '<div class="empty">Chưa có dữ liệu đại biểu.</div>';
 
-  // Chia thành các hàng 4 người
-  const rows4 = [];
-  for (let i = 0; i < data.length; i += 4) rows4.push(data.slice(i, i + 4));
-
   const items = data.map((r, i) => {
-    const ten        = r['HoTen']  || r['A'] || '—';
-    const chucvu     = r['ChucVu'] || r['B'] || '';
-    const ban        = r['Ban']    || r['C'] || '';
-    const anhUrl     = r['AnhURL'] || r['D'] || '';
-    const initials   = ten.split(' ').filter(w=>w).map(w=>w[0]).join('').slice(-2).toUpperCase();
+    const ten      = r['HoTen']  || r['A'] || '—';
+    const chucvu   = r['ChucVu'] || r['B'] || '';
+    const ban      = r['Ban']    || r['C'] || '';
+    const anhUrl   = r['AnhURL'] || r['D'] || '';
+    const initials = ten.split(' ').filter(w=>w).map(w=>w[0]).join('').slice(-2).toUpperCase();
+
     let finalImg = '';
+    if (anhUrl.includes('drive.google.com')) {
+      const m = anhUrl.match(/\/d\/([^\/?#]+)/) || anhUrl.match(/[?&]id=([^&#]+)/);
+      if (m && m[1]) finalImg = `https://drive.google.com/thumbnail?id=${encodeURIComponent(m[1])}&sz=w300`;
+    } else {
+      finalImg = safeUrl(anhUrl);
+    }
 
-if (anhUrl.includes('drive.google.com')) {
-  const match = anhUrl.match(/\/d\/([^\/]+)/);
-  if (match && match[1]) {
-    finalImg = `https://drive.google.com/thumbnail?id=${match[1]}&sz=w300`;
-  }
-} else {
-  finalImg = anhUrl;
-}
+    // Ảnh lỗi → tự chuyển sang chữ cái viết tắt (xem trình nghe sự kiện 'error' bên dưới)
+    const avatarInner = finalImg
+      ? `<img src="${esc(finalImg)}" alt="${esc(ten)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-fallback="${esc(initials)}">`
+      : esc(initials);
 
-const avatarInner = finalImg
-  ? `<img src="${finalImg}" alt="${ten}" onerror="this.parentElement.innerHTML='${initials}'">`
-  : initials;
     return `<div class="mli">
       <div class="mli-avatar">${avatarInner}</div>
       <div class="mli-info">
-        <span class="ten">${(i+1)}. ${ten}</span>
-        ${chucvu ? `<span class="chucvu">${chucvu}</span>` : ''}
-        ${ban    ? `<span class="ban">${ban}</span>`       : ''}
+        <span class="ten">${(i+1)}. ${esc(ten)}</span>
+        ${chucvu ? `<span class="chucvu">${esc(chucvu)}</span>` : ''}
+        ${ban    ? `<span class="ban">${esc(ban)}</span>`       : ''}
       </div>
     </div>`;
   }).join('');
@@ -859,13 +926,13 @@ const avatarInner = finalImg
 
 function schedule(data) {
   if (!data.length) return '<div class="empty">Chưa có lịch tiếp công dân.</div>';
-  return data.map(r=>`
+  return data.map(r => `
     <div class="sch">
       <div class="sch-dot ${r.TrangThai==='Sắp diễn ra'?'gold':r.TrangThai==='Đã qua'?'gray':''}"></div>
       <div>
-        <strong>${r.ThuNgay||'—'}</strong>
-        <small>🕐 ${r.GioGiac||'—'} &nbsp;·&nbsp; 📍 ${r.DiaDiem||'—'}</small>
-        ${r.GhiChu?`<small style="color:var(--gold);display:block;">📝 ${r.GhiChu}</small>`:''}
+        <strong>${esc(r.ThuNgay) || '—'}</strong>
+        <small>🕐 ${esc(r.GioGiac) || '—'} &nbsp;·&nbsp; 📍 ${esc(r.DiaDiem) || '—'}</small>
+        ${r.GhiChu ? `<small style="color:var(--gold);display:block;">📝 ${esc(r.GhiChu)}</small>` : ''}
       </div>
     </div>`).join('');
 }
@@ -877,34 +944,37 @@ function err(id)       { set(id,'<div class="err">⚠️ Không thể tải. Ki�
 function noConfig(id)  { set(id,'<div class="empty">⚙️ Chưa kết nối Sheets.</div>'); }
 
 // ── LOAD SECTIONS ──
-async function load(sec) {
+// force = true: bỏ qua cache, tải lại từ Google Sheets (dùng cho nút "↻ Cập nhật")
+async function load(sec, force = false) {
   if (!SHEETS_ID) { ['d-kyhop','d-txct','d-nq','d-qd','d-tb','d-giamsat','d-tintuc','d-daibieu','d-tiepdan'].forEach(noConfig); return; }
   if (sec==='hoatdong' || sec==='all') {
     loading('d-kyhop'); loading('d-txct');
-    const [k,t] = await Promise.all([fetchSheet(SHEET.kyhop),fetchSheet(SHEET.txct)]);
+    const [k,t] = await Promise.all([fetchSheet(SHEET.kyhop,force),fetchSheet(SHEET.txct,force)]);
     k ? set('d-kyhop', docList(rows(k),{icon:'📅',title:'TieuDe',note:'GhiChu',date:'Ngay',tag:'TrangThai',scrollClass:'doc-scroll-3'})) : err('d-kyhop');
     t ? set('d-txct',  docList(rows(t),{icon:'🤝',title:'TieuDe',note:'GhiChu',date:'Ngay',tag:'LoaiHop',scrollClass:'doc-scroll-3'})) : err('d-txct');
   }
   if (sec==='vanban' || sec==='all') {
     loading('d-nq'); loading('d-qd'); loading('d-tb');
-    const [n,q,b] = await Promise.all([fetchSheet(SHEET.nq),fetchSheet(SHEET.qd),fetchSheet(SHEET.tb)]);
+    const [n,q,b] = await Promise.all([fetchSheet(SHEET.nq,force),fetchSheet(SHEET.qd,force),fetchSheet(SHEET.tb,force)]);
     n ? set('d-nq', docList(rows(n),{icon:'📄',title:'TrichYeu',date:'NgayBanHanh',tag:'SoHieu',link:'FilePDF',showPdf:true,scrollClass:'doc-scroll-5'})) : err('d-nq');
     q ? set('d-qd', docList(rows(q),{icon:'📋',title:'TrichYeu',date:'NgayBanHanh',tag:'SoHieu',link:'FilePDF',showPdf:true,scrollClass:'doc-scroll-5'})) : err('d-qd');
     b ? set('d-tb', docList(rows(b),{icon:'📢',title:'TrichYeu',date:'NgayBanHanh',tag:'SoHieu',link:'FilePDF',showPdf:true,scrollClass:'doc-scroll-5'})) : err('d-tb');
+    if (n) document.getElementById('stat-nq').textContent = rows(n).length || '—';
   }
   if (sec==='giamsat' || sec==='all') {
     loading('d-giamsat');
-    const g = await fetchSheet(SHEET.giamsat);
+    const g = await fetchSheet(SHEET.giamsat,force);
     g ? set('d-giamsat', newsCards(rows(g))) : err('d-giamsat');
+    if (g) document.getElementById('stat-gs').textContent = rows(g).length || '—';
   }
   if (sec==='tintuc' || sec==='all') {
     loading('d-tintuc');
-    const tt = await fetchSheet(SHEET.tintuc);
+    const tt = await fetchSheet(SHEET.tintuc,force);
     tt ? set('d-tintuc', newsCards(rows(tt))) : err('d-tintuc');
   }
   if (sec==='daibieu' || sec==='all') {
     loading('d-daibieu');
-    const db = await fetchSheet(SHEET.daibieu);
+    const db = await fetchSheet(SHEET.daibieu,force);
     if (db) {
       const r2 = rows(db);
       set('d-daibieu', members(r2));
@@ -913,7 +983,7 @@ async function load(sec) {
   }
   if (sec==='tiepdan' || sec==='all') {
     loading('d-tiepdan');
-    const td = await fetchSheet(SHEET.tiepdan);
+    const td = await fetchSheet(SHEET.tiepdan,force);
     td ? set('d-tiepdan', schedule(rows(td))) : err('d-tiepdan');
   }
 }
@@ -985,13 +1055,32 @@ tick();
 setInterval(tick,1000);
 
 // ── SCROLL TOP ──
-window.addEventListener('scroll',()=>document.getElementById('sTop').classList.toggle('show',scrollY>300));
+window.addEventListener('scroll',()=>document.getElementById('sTop').classList.toggle('show',scrollY>300),{passive:true});
 
 // ── NAV ──
 document.querySelectorAll('.nw a').forEach(a=>a.addEventListener('click',function(){
   document.querySelectorAll('.nw a').forEach(x=>x.classList.remove('active'));
   this.classList.add('active');
 }));
+
+// ── THẺ TIN BẤM ĐƯỢC (thay cho onclick nối chuỗi) ──
+document.addEventListener('click', e => {
+  const c = e.target.closest('.nc[data-href]');
+  if (c) window.open(c.dataset.href, '_blank', 'noopener,noreferrer');
+});
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const c = e.target.closest?.('.nc[data-href]');
+  if (c) window.open(c.dataset.href, '_blank', 'noopener,noreferrer');
+});
+
+// ── ẢNH ĐẠI BIỂU LỖI → CHỮ CÁI VIẾT TẮT ──
+document.addEventListener('error', e => {
+  const t = e.target;
+  if (t && t.tagName === 'IMG' && t.hasAttribute('data-fallback')) {
+    t.parentElement.textContent = t.getAttribute('data-fallback');
+  }
+}, true);
 
 // ── INIT ──
 window.addEventListener('DOMContentLoaded',()=>{
